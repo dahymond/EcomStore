@@ -1,2 +1,1 @@
-# ViewKart
 # EcomStore

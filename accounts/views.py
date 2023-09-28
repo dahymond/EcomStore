@@ -69,9 +69,25 @@ def login(request):
                 if is_cart_item_exists:
                     cart_item = CartItem.objects.filter(cart=cart)
                     
+                    #Getting the product variations bt cart id
+                    product_variation = []
                     for item in cart_item:
-                        item.user = user
-                        item.save()
+                        variation = item.variation.all()
+                        product_variation.append(list(variation))
+                        
+                    #Get the car items from the user to access his proudct variations
+                    cart_item = CartItem.objects.filter(user=user)
+            ex_var_list = []
+            id = []
+            for item in cart_item:
+                existing_variation = item.variations.all()
+                ex_var_list.append(list(existing_variation))
+                id.append(item.id)
+                    
+                        
+                    # for item in cart_item:
+                    #     item.user = user
+                    #     item.save()
             
             except:
                 pass
